@@ -134,7 +134,7 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            padding: 40px;
+            padding: 10px 15px;
             position: relative;
         }
 
@@ -378,6 +378,7 @@
         /* Question Slides */
         .question-slide {
             position: relative;
+            gap: 10px;
         }
 
         .question-header {
@@ -385,20 +386,21 @@
             justify-content: space-between;
             align-items: center;
             width: 100%;
-            max-width: 1200px;
-            margin-bottom: 40px;
+            max-width: 96vw;
+            margin-bottom: 0;
         }
 
         .question-badge {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 700;
-            padding: 20px 40px;
-            background: var(--glass-bg);
+            padding: 14px 28px;
+            background: rgba(0, 245, 255, 0.06);
             border: 2px solid var(--neon-blue);
-            border-radius: 10px;
+            border-radius: 8px;
             position: relative;
             overflow: hidden;
+            flex-shrink: 0;
         }
 
         .question-badge::before {
@@ -408,7 +410,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(0, 245, 255, 0.1), transparent);
+            background: linear-gradient(45deg, transparent, rgba(0, 245, 255, 0.08), transparent);
             animation: shimmer 3s infinite;
         }
 
@@ -430,11 +432,12 @@
         /* Holographic Timer */
         .timer-hologram {
             position: relative;
-            padding: 30px 50px;
-            background: var(--glass-bg);
+            padding: 14px 35px;
+            background: rgba(0, 255, 136, 0.04);
             border: 2px solid transparent;
-            border-radius: 20px;
+            border-radius: 12px;
             backdrop-filter: blur(10px);
+            flex-shrink: 0;
         }
 
         .timer-hologram::before {
@@ -445,7 +448,7 @@
             right: -2px;
             bottom: -2px;
             background: linear-gradient(45deg, var(--neon-green), var(--neon-blue), var(--neon-purple), var(--neon-pink));
-            border-radius: 22px;
+            border-radius: 14px;
             z-index: -1;
             animation: borderRotate 4s linear infinite;
             background-size: 400% 400%;
@@ -473,18 +476,19 @@
             right: 0;
             bottom: 0;
             background: var(--dark-bg);
-            border-radius: 18px;
+            border-radius: 10px;
             z-index: -1;
         }
 
         .timer {
             font-family: 'Orbitron', sans-serif;
-            font-size: 4.5rem;
+            font-size: 3.5rem;
             font-weight: 900;
             color: var(--neon-green);
             text-shadow: 0 0 20px var(--neon-green), 0 0 40px var(--neon-green);
             letter-spacing: 5px;
             transition: all 0.3s ease;
+            line-height: 1;
         }
 
         .timer.warning {
@@ -529,12 +533,19 @@
 
         .timer-label {
             font-family: 'Orbitron', sans-serif;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.9rem;
-            letter-spacing: 5px;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.65rem;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            margin-top: 10px;
+            margin-top: 4px;
             text-align: center;
+        }
+
+        /* Header center: controls integrated */
+        .header-controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
         }
 
         /* Question Box - Holographic Card */
@@ -549,6 +560,10 @@
             text-align: center;
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .question-header+.question-box.image-box {
+            margin-top: 0;
         }
 
         .question-box::before {
@@ -619,23 +634,86 @@
             font-style: italic;
         }
 
+        /* Question Image Styles - Optimized for Videotron */
+        .question-image-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .question-image-frame {
+            background: #000000;
+            border: 3px solid var(--neon-blue);
+            border-radius: 8px;
+            padding: 6px;
+        }
+
+        .question-image {
+            display: block;
+            max-width: 90vw;
+            max-height: 68vh;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 8px;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            filter: brightness(1.1) contrast(1.05);
+        }
+
+        /* Landscape images - maximize width */
+        .question-image.landscape {
+            max-width: 92vw;
+            max-height: 70vh;
+            width: 92vw;
+            height: auto;
+        }
+
+        /* Portrait images - maximize height */
+        .question-image.portrait {
+            max-width: 60vw;
+            max-height: 72vh;
+            width: auto;
+            height: 72vh;
+        }
+
+        /* Simple box for image */
+        .question-box.image-box {
+            background: transparent;
+            padding: 0;
+            max-width: 98vw;
+            max-height: 78vh;
+            border: none;
+            border-radius: 0;
+            backdrop-filter: none;
+        }
+
+        .question-box.image-box .corner {
+            display: none;
+        }
+
+        .question-box.image-box::before {
+            display: none;
+        }
+
         /* Control Buttons */
         .timer-controls {
-            display: flex;
-            gap: 20px;
-            margin-top: 50px;
+            display: none;
         }
 
         .control-btn {
             position: relative;
-            padding: 18px 40px;
+            padding: 12px 26px;
             font-family: 'Orbitron', sans-serif;
-            font-size: 1rem;
+            font-size: 0.8rem;
             font-weight: 700;
             color: white;
-            background: var(--glass-bg);
-            border: 2px solid;
-            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1.5px solid;
+            border-radius: 30px;
             cursor: pointer;
             transition: all 0.3s ease;
             text-transform: uppercase;
@@ -694,18 +772,18 @@
         /* Slide Indicators */
         .slide-indicators {
             position: fixed;
-            top: 30px;
+            top: 20px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 15px;
+            gap: 10px;
             z-index: 100;
         }
 
         .indicator {
-            width: 12px;
-            height: 12px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            width: 10px;
+            height: 10px;
+            border: 1.5px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -878,6 +956,8 @@
         <div class="indicator" data-slide="1"></div>
         <div class="indicator" data-slide="2"></div>
         <div class="indicator" data-slide="3"></div>
+        <div class="indicator" data-slide="4"></div>
+        <div class="indicator" data-slide="5"></div>
     </div>
 
     <!-- Slide 0: Welcome -->
@@ -888,7 +968,7 @@
         </div>
         <h1>BABAK PLAYOFF</h1>
         <h2>// SIAPKAN DIRI ANDA //</h2>
-        <p class="info-text">⚡ 3 SOAL • 3 MENIT PER SOAL • BERIKAN YANG TERBAIK ⚡</p>
+        <p class="info-text">⚡ 5 SOAL • 3 MENIT PER SOAL • BERIKAN YANG TERBAIK ⚡</p>
         <button class="cyber-btn" onclick="nextSlide()">
             <div class="btn-glitch"></div>
             <span>🚀 MULAI MISI</span>
@@ -901,24 +981,26 @@
             <div class="question-badge">
                 <span>⚡ SOAL 01</span>
             </div>
+            <div class="header-controls">
+                <button class="control-btn start-btn" onclick="startTimer(1)">▶ Mulai</button>
+                <button class="control-btn pause-btn" onclick="pauseTimer(1)">⏸ Pause</button>
+                <button class="control-btn reset-btn" onclick="resetTimer(1)">↻ Reset</button>
+            </div>
             <div class="timer-hologram">
                 <div class="timer" id="timer-1">03:00</div>
                 <div class="timer-label">⏱ Waktu Tersisa</div>
             </div>
         </div>
-        <div class="question-box">
+        <div class="question-box image-box">
             <div class="corner corner-tl"></div>
             <div class="corner corner-tr"></div>
             <div class="corner corner-bl"></div>
             <div class="corner corner-br"></div>
-            <p class="question-text">
-                <span class="question-placeholder">[Masukkan Soal 1 di sini]</span>
-            </p>
-        </div>
-        <div class="timer-controls">
-            <button class="control-btn start-btn" onclick="startTimer(1)">▶ Mulai</button>
-            <button class="control-btn pause-btn" onclick="pauseTimer(1)">⏸ Pause</button>
-            <button class="control-btn reset-btn" onclick="resetTimer(1)">↻ Reset</button>
+            <div class="question-image-wrapper">
+                <div class="question-image-frame">
+                    <img src="soal_1.png" alt="Soal 1" class="question-image">
+                </div>
+            </div>
         </div>
     </div>
 
@@ -928,24 +1010,26 @@
             <div class="question-badge">
                 <span>⚡ SOAL 02</span>
             </div>
+            <div class="header-controls">
+                <button class="control-btn start-btn" onclick="startTimer(2)">▶ Mulai</button>
+                <button class="control-btn pause-btn" onclick="pauseTimer(2)">⏸ Pause</button>
+                <button class="control-btn reset-btn" onclick="resetTimer(2)">↻ Reset</button>
+            </div>
             <div class="timer-hologram">
                 <div class="timer" id="timer-2">03:00</div>
                 <div class="timer-label">⏱ Waktu Tersisa</div>
             </div>
         </div>
-        <div class="question-box">
+        <div class="question-box image-box">
             <div class="corner corner-tl"></div>
             <div class="corner corner-tr"></div>
             <div class="corner corner-bl"></div>
             <div class="corner corner-br"></div>
-            <p class="question-text">
-                <span class="question-placeholder">[Masukkan Soal 2 di sini]</span>
-            </p>
-        </div>
-        <div class="timer-controls">
-            <button class="control-btn start-btn" onclick="startTimer(2)">▶ Mulai</button>
-            <button class="control-btn pause-btn" onclick="pauseTimer(2)">⏸ Pause</button>
-            <button class="control-btn reset-btn" onclick="resetTimer(2)">↻ Reset</button>
+            <div class="question-image-wrapper">
+                <div class="question-image-frame">
+                    <img src="soal_2.png" alt="Soal 2" class="question-image">
+                </div>
+            </div>
         </div>
     </div>
 
@@ -955,24 +1039,84 @@
             <div class="question-badge">
                 <span>⚡ SOAL 03</span>
             </div>
+            <div class="header-controls">
+                <button class="control-btn start-btn" onclick="startTimer(3)">▶ Mulai</button>
+                <button class="control-btn pause-btn" onclick="pauseTimer(3)">⏸ Pause</button>
+                <button class="control-btn reset-btn" onclick="resetTimer(3)">↻ Reset</button>
+            </div>
             <div class="timer-hologram">
                 <div class="timer" id="timer-3">03:00</div>
                 <div class="timer-label">⏱ Waktu Tersisa</div>
             </div>
         </div>
-        <div class="question-box">
+        <div class="question-box image-box">
             <div class="corner corner-tl"></div>
             <div class="corner corner-tr"></div>
             <div class="corner corner-bl"></div>
             <div class="corner corner-br"></div>
-            <p class="question-text">
-                <span class="question-placeholder">[Masukkan Soal 3 di sini]</span>
-            </p>
+            <div class="question-image-wrapper">
+                <div class="question-image-frame">
+                    <img src="soal_3.png" alt="Soal 3" class="question-image">
+                </div>
+            </div>
         </div>
-        <div class="timer-controls">
-            <button class="control-btn start-btn" onclick="startTimer(3)">▶ Mulai</button>
-            <button class="control-btn pause-btn" onclick="pauseTimer(3)">⏸ Pause</button>
-            <button class="control-btn reset-btn" onclick="resetTimer(3)">↻ Reset</button>
+    </div>
+
+    <!-- Slide 4: Soal 4 -->
+    <div class="slide question-slide" id="slide-4">
+        <div class="question-header">
+            <div class="question-badge">
+                <span>⚡ SOAL 04</span>
+            </div>
+            <div class="header-controls">
+                <button class="control-btn start-btn" onclick="startTimer(4)">▶ Mulai</button>
+                <button class="control-btn pause-btn" onclick="pauseTimer(4)">⏸ Pause</button>
+                <button class="control-btn reset-btn" onclick="resetTimer(4)">↻ Reset</button>
+            </div>
+            <div class="timer-hologram">
+                <div class="timer" id="timer-4">03:00</div>
+                <div class="timer-label">⏱ Waktu Tersisa</div>
+            </div>
+        </div>
+        <div class="question-box image-box">
+            <div class="corner corner-tl"></div>
+            <div class="corner corner-tr"></div>
+            <div class="corner corner-bl"></div>
+            <div class="corner corner-br"></div>
+            <div class="question-image-wrapper">
+                <div class="question-image-frame">
+                    <img src="soal_4.png" alt="Soal 4" class="question-image">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Soal 5 -->
+    <div class="slide question-slide" id="slide-5">
+        <div class="question-header">
+            <div class="question-badge">
+                <span>⚡ SOAL 05</span>
+            </div>
+            <div class="header-controls">
+                <button class="control-btn start-btn" onclick="startTimer(5)">▶ Mulai</button>
+                <button class="control-btn pause-btn" onclick="pauseTimer(5)">⏸ Pause</button>
+                <button class="control-btn reset-btn" onclick="resetTimer(5)">↻ Reset</button>
+            </div>
+            <div class="timer-hologram">
+                <div class="timer" id="timer-5">03:00</div>
+                <div class="timer-label">⏱ Waktu Tersisa</div>
+            </div>
+        </div>
+        <div class="question-box image-box">
+            <div class="corner corner-tl"></div>
+            <div class="corner corner-tr"></div>
+            <div class="corner corner-bl"></div>
+            <div class="corner corner-br"></div>
+            <div class="question-image-wrapper">
+                <div class="question-image-frame">
+                    <img src="soal_5.png" alt="Soal 5" class="question-image">
+                </div>
+            </div>
         </div>
     </div>
 
@@ -1003,13 +1147,15 @@
         createParticles();
 
         let currentSlide = 0;
-        const totalSlides = 4;
+        const totalSlides = 6;
         const TIMER_DURATION = 180;
 
         const timers = {
             1: { remaining: TIMER_DURATION, interval: null, running: false },
             2: { remaining: TIMER_DURATION, interval: null, running: false },
-            3: { remaining: TIMER_DURATION, interval: null, running: false }
+            3: { remaining: TIMER_DURATION, interval: null, running: false },
+            4: { remaining: TIMER_DURATION, interval: null, running: false },
+            5: { remaining: TIMER_DURATION, interval: null, running: false }
         };
 
         function updateSlide() {
@@ -1120,8 +1266,8 @@
             } else if (e.key === ' ' || e.key === 'Enter') {
                 e.preventDefault();
                 // Get current question number (1, 2, or 3) based on current slide
-                const questionNum = currentSlide; // 1, 2, 3 for question slides
-                if (questionNum >= 1 && questionNum <= 3) {
+                const questionNum = currentSlide; // 1-5 for question slides
+                if (questionNum >= 1 && questionNum <= 5) {
                     // Toggle timer: start if not running, pause if running
                     if (timers[questionNum].running) {
                         pauseTimer(questionNum);
@@ -1141,6 +1287,33 @@
                 updateSlide();
             });
         });
+
+        // Auto-detect image orientation and apply landscape/portrait class
+        function detectImageOrientation() {
+            const images = document.querySelectorAll('.question-image');
+            images.forEach((img) => {
+                if (img.complete) {
+                    applyOrientationClass(img);
+                } else {
+                    img.addEventListener('load', () => {
+                        applyOrientationClass(img);
+                    });
+                }
+            });
+        }
+
+        function applyOrientationClass(img) {
+            const width = img.naturalWidth;
+            const height = img.naturalHeight;
+            img.classList.remove('landscape', 'portrait');
+            if (width >= height) {
+                img.classList.add('landscape');
+            } else {
+                img.classList.add('portrait');
+            }
+        }
+
+        detectImageOrientation();
 
         updateSlide();
     </script>
